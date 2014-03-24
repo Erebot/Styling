@@ -21,7 +21,7 @@
     },
     "require": {
         "php": ">=5.3.0",
-        "erebot/i18n": "1.0.*@dev",
+        "erebot/intl": "1.0.*@dev",
         "erebot/dom": "1.0.*@dev",
         "pear/pear_exception": "1.0.*@dev",
         "fpoirotte/file_gettext": "dev-master",
