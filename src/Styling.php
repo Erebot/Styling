@@ -18,7 +18,7 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Erebot\Styling;
+namespace Erebot;
 
 /**
  * \brief
@@ -110,7 +110,7 @@ namespace Erebot\Styling;
  *      </tr>
  *  </table>
  */
-class Main implements \Erebot\Styling\MainInterface
+class Styling implements \Erebot\StylingInterface
 {
     /// Translator to use to improve rendering.
     protected $translator;
@@ -121,11 +121,11 @@ class Main implements \Erebot\Styling\MainInterface
     /**
      * Construct a new styling object.
      *
-     * \param ::Erebot::Intl::IntlInterface $translator
+     * \param ::Erebot::IntlInterface $translator
      *      A translator object, used to determine the correct
      *      pluralization rules.
      */
-    public function __construct(\Erebot\Intl\IntlInterface $translator)
+    public function __construct(\Erebot\IntlInterface $translator)
     {
         $this->translator  = $translator;
         $this->cls = array(
@@ -342,7 +342,7 @@ class Main implements \Erebot\Styling\MainInterface
      * \param string $source
      *      Template to parse.
      *
-     * \retval ::Erebot::DOM::DOM
+     * \retval Erebot::DOM
      *      DOM object constructed
      *      from the template.
      *
@@ -359,7 +359,7 @@ class Main implements \Erebot\Styling\MainInterface
         $schema = dirname(__DIR__) .
                     DIRECTORY_SEPARATOR . 'data' .
                     DIRECTORY_SEPARATOR . 'styling.rng';
-        $dom    =   new \Erebot\DOM\DOM();
+        $dom    =   new \Erebot\DOM();
         $dom->substituteEntities    = true;
         $dom->resolveExternals      = false;
         $dom->recover               = true;
@@ -447,7 +447,7 @@ class Main implements \Erebot\Styling\MainInterface
                     if ($value != '') {
                         $value = str_replace(array(' ', '-'), '_', $value);
                         if (strspn($value, '1234567890') !== strlen($value)) {
-                            $reflector = new \ReflectionClass('\\Erebot\\Styling\\MainInterface');
+                            $reflector = new \ReflectionClass('\\Erebot\\StylingInterface');
                             if (!$reflector->hasConstant('COLOR_'.strtoupper($value))) {
                                 throw new \InvalidArgumentException(
                                     'Invalid color "'.$value.'"'
@@ -574,7 +574,7 @@ class Main implements \Erebot\Styling\MainInterface
             }
             $pattern .= '}';
             $locale = $this->translator->getLocale(
-                \Erebot\Intl\IntlInterface::LC_MESSAGES
+                \Erebot\IntlInterface::LC_MESSAGES
             );
             $formatter = new \MessageFormatter($locale, $pattern);
             // HACK: PHP <= 5.3.3 returns null when the pattern in invalid

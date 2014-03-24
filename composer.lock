@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "84b75068c8ab993d086f0637d8a2f38c",
+    "hash": "f139ff61dc8cdcb38540063cc170ed74",
     "packages": [
         {
             "name": "erebot/dom",
@@ -11,12 +11,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Erebot/DOM.git",
-                "reference": "3cfa5b585fee3a0016d508ed0064b1a952fd62ce"
+                "reference": "347d8c5f37151dcc4185be131cf92df78f2aae17"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Erebot/DOM/zipball/3cfa5b585fee3a0016d508ed0064b1a952fd62ce",
-                "reference": "3cfa5b585fee3a0016d508ed0064b1a952fd62ce",
+                "url": "https://api.github.com/repos/Erebot/DOM/zipball/347d8c5f37151dcc4185be131cf92df78f2aae17",
+                "reference": "347d8c5f37151dcc4185be131cf92df78f2aae17",
                 "shasum": ""
             },
             "require": {
@@ -37,7 +37,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "Erebot\\DOM\\": "src/"
+                    "Erebot\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -58,7 +58,7 @@
                 "schematron",
                 "validation"
             ],
-            "time": "2014-03-22 18:31:03"
+            "time": "2014-03-24 15:08:57"
         },
         {
             "name": "erebot/intl",
@@ -66,12 +66,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Erebot/Intl.git",
-                "reference": "17ab439ca1ea65b2c3922b2880ac558a00c0f385"
+                "reference": "36f7eca0ec0ba58bed48ae1058e1a658b8086618"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Erebot/Intl/zipball/17ab439ca1ea65b2c3922b2880ac558a00c0f385",
-                "reference": "17ab439ca1ea65b2c3922b2880ac558a00c0f385",
+                "url": "https://api.github.com/repos/Erebot/Intl/zipball/36f7eca0ec0ba58bed48ae1058e1a658b8086618",
+                "reference": "36f7eca0ec0ba58bed48ae1058e1a658b8086618",
                 "shasum": ""
             },
             "require": {
@@ -94,7 +94,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "Erebot\\Intl\\": "src/"
+                    "Erebot\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -116,7 +116,7 @@
                 "l10n",
                 "translations"
             ],
-            "time": "2014-03-24 08:20:59"
+            "time": "2014-03-24 15:10:58"
         },
         {
             "name": "fpoirotte/file_gettext",

@@ -22,33 +22,35 @@ namespace Erebot\Styling\Variables;
 
 /**
  * \brief
- *      A class used to format integers.
+ *      A class used to format strings.
+ *
+ * \note
+ *      Actually, strings are rendered "as is",
+ *      without any special formatting applied,
+ *      so this class can safely be used as a
+ *      passthrough.
  */
-class Integer implements \Erebot\Styling\Variables\IntegerInterface
+class String implements \Erebot\Styling\Variables\StringInterface
 {
-    /// Integer to format.
+    /// The value to format.
     protected $value;
 
     /**
      * Constructor.
      *
-     * \param int $value
-     *      Integer value to format.
+     * \param string $value
+     *      The value to format.
+     *      It must support conversions to the
+     *      string type.
      */
     public function __construct($value)
     {
         $this->value = $value;
     }
 
-    public function render(\Erebot\Intl\IntlInterface $translator)
+    public function render(\Erebot\IntlInterface $translator)
     {
-        $locale = $translator->getLocale(\Erebot\Intl\IntlInterface::LC_NUMERIC);
-        $formatter = new \NumberFormatter($locale, \NumberFormatter::IGNORE);
-        $result = (string) $formatter->format(
-            $this->value,
-            \NumberFormatter::TYPE_INT32
-        );
-        return $result;
+        return (string) $this->value;
     }
 
     public function getValue()

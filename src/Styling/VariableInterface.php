@@ -30,14 +30,14 @@ interface VariableInterface
     /**
      * Renders the content of this variable.
      *
-     * \param ::Erebot::Intl::IntlInterface $translator
+     * \param ::Erebot::IntlInterface $translator
      *      A translator that can be used to change the rendering
      *      depending on the target locale.
      *
      * \retval string
      *      The variable rendered as a string.
      */
-    public function render(\Erebot\Intl\IntlInterface $translator);
+    public function render(\Erebot\IntlInterface $translator);
 
     /**
      * Returns the value stored in this object.

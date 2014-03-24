@@ -24,7 +24,7 @@ extends PHPUnit_Framework_TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->_translator = $this->getMock('\\Erebot\\Intl\\IntlInterface', array(), array('', ''), '', FALSE, FALSE);
+        $this->_translator = $this->getMock('\\Erebot\\IntlInterface', array(), array('', ''), '', FALSE, FALSE);
         $this->_translator
             ->expects($this->any())
             ->method('getLocale')
@@ -37,12 +37,12 @@ extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Erebot\Styling\Main
+     * @covers \Erebot\Styling
      */
     public function testArrayWithOnlyOneElement()
     {
         $source = '<for from="names" item="name"><var name="name"/></for>';
-        $tpl    = new \Erebot\Styling\Main($this->_translator);
+        $tpl    = new \Erebot\Styling($this->_translator);
         $vars   = array('names' => array('Clicky'));
         $result = addcslashes($tpl->render($source, $vars), "\000..\037");
         $expected = "Clicky";
@@ -50,14 +50,14 @@ extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Erebot\Styling\Main
+     * @covers \Erebot\Styling
      */
     public function testBeatlesTest()
     {
         $source =   'The Beatles: <for from="Beatles" item="Beatle">'.
                     '<u><var name="Beatle"/></u></for>.';
 
-        $tpl    = new \Erebot\Styling\Main($this->_translator);
+        $tpl    = new \Erebot\Styling($this->_translator);
         $vars   = array('Beatles' => array('George', 'John', 'Paul', 'Ringo'));
         $result = $tpl->render($source, $vars);
         $result = addcslashes($tpl->render($source, $vars), "\000..\037");
@@ -67,7 +67,7 @@ extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers \Erebot\Styling\Main
+     * @covers \Erebot\Styling
      */
     public function testScoreTest()
     {
@@ -76,7 +76,7 @@ extends PHPUnit_Framework_TestCase
                     '<b><u><color fg="green"><var name="nick"/></color></u>: '.
                     '<var name="score"/></b></for>';
 
-        $tpl    =   new \Erebot\Styling\Main($this->_translator);
+        $tpl    =   new \Erebot\Styling($this->_translator);
         $scores =   array(
                         'Clicky' => 42,
                         'Looksup' => 23,
@@ -95,7 +95,7 @@ extends PHPUnit_Framework_TestCase
      * or "bg" attribute is correctly marked as invalid.
      *
      * @expectedException   \InvalidArgumentException
-     * @covers              \Erebot\Styling\Main
+     * @covers              \Erebot\Styling
      */
     public function testColorMissingAttributes()
     {
@@ -130,12 +130,12 @@ ERROR:Array
 LOGS
         );
 
-        $tpl = new \Erebot\Styling\Main($this->_translator);
+        $tpl = new \Erebot\Styling($this->_translator);
         $tpl->render('<color>foo</color>');
     }
 
     /**
-     * @covers \Erebot\Styling\Main
+     * @covers \Erebot\Styling
      */
     public function testPlural()
     {
@@ -144,7 +144,7 @@ LOGS
         $source =   "<plural var='foo'><case form='one'>there's <var ".
                     "name='foo'/> file</case><case form='other'>there ".
                     "are #{''<var name='foo'/>''}# files</case></plural>";
-        $tpl    = new \Erebot\Styling\Main($this->_translator);
+        $tpl    = new \Erebot\Styling($this->_translator);
         $result = $tpl->render($source, array('foo' => 0));
         $this->assertEquals("there are #{''0''}# files", $result);
         $result = $tpl->render($source, array('foo' => 1));
@@ -156,7 +156,7 @@ LOGS
     public function testInteger()
     {
         $source = "<var name='foo'/>";
-        $tpl    = new \Erebot\Styling\Main($this->_translator);
+        $tpl    = new \Erebot\Styling($this->_translator);
         $result = $tpl->render($source, array('foo' => 12345));
         $this->assertEquals('12345', $result);
 
@@ -170,7 +170,7 @@ LOGS
     public function testFloat()
     {
         $source = "<var name='foo'/>";
-        $tpl    = new \Erebot\Styling\Main($this->_translator);
+        $tpl    = new \Erebot\Styling($this->_translator);
         $result = $tpl->render($source, array('foo' => 12345.67891));
         $this->assertEquals('12,345.67891', $result);
 
@@ -184,7 +184,7 @@ LOGS
     public function testCurrency()
     {
         $source = "<var name='foo'/>";
-        $tpl    = new \Erebot\Styling\Main($this->_translator);
+        $tpl    = new \Erebot\Styling($this->_translator);
         $result = $tpl->render(
             $source,
             array('foo' => new \Erebot\Styling\Variables\Currency(12345.67891, 'EUR'))
@@ -196,13 +196,13 @@ LOGS
     public function testDateTime()
     {
         $source = "<var name='foo'/>";
-        $tpl    = new \Erebot\Styling\Main($this->_translator);
+        $tpl    = new \Erebot\Styling($this->_translator);
         // 28 Nov 1985, 14:10:00 +0100.
         $date = 502031400;
         $formatter  = new \Erebot\Styling\Variables\DateTime(
             $date,
-            IntlDateFormatter::FULL,
-            IntlDateFormatter::LONG,
+            \IntlDateFormatter::FULL,
+            \IntlDateFormatter::LONG,
             'Europe/Paris'
         );
         $result     = $tpl->render($source, array('foo' => $formatter));
@@ -213,7 +213,7 @@ LOGS
     public function testDuration()
     {
         $source = "<var name='foo'/>";
-        $tpl    = new \Erebot\Styling\Main($this->_translator);
+        $tpl    = new \Erebot\Styling($this->_translator);
         $values = array(
             0       => "0 seconds",
             1       => "1 second",
@@ -234,7 +234,7 @@ LOGS
     public function testCount()
     {
         $source = "<var name='#foo'/>";
-        $tpl    = new \Erebot\Styling\Main($this->_translator);
+        $tpl    = new \Erebot\Styling($this->_translator);
         $values = range(1, 10);
         $result = $tpl->render($source, array('foo' => $values));
         $this->assertEquals('10', $result);
@@ -243,7 +243,7 @@ LOGS
     public function testAddition1()
     {
         $source = "<var name='41+1'/>";
-        $tpl    = new \Erebot\Styling\Main($this->_translator);
+        $tpl    = new \Erebot\Styling($this->_translator);
         $result = $tpl->render($source, array());
         $this->assertEquals('42', $result);
     }
@@ -251,7 +251,7 @@ LOGS
     public function testAddition2()
     {
         $source = "<var name='#foo+#bar'/>";
-        $tpl    = new \Erebot\Styling\Main($this->_translator);
+        $tpl    = new \Erebot\Styling($this->_translator);
         $foo    = range(1, 10);
         $bar    = range(1, 4);
         $result = $tpl->render($source, array('foo' => $foo, 'bar' => $bar));
@@ -261,7 +261,7 @@ LOGS
     public function testSubtraction1()
     {
         $source = "<var name='43-1'/>";
-        $tpl    = new \Erebot\Styling\Main($this->_translator);
+        $tpl    = new \Erebot\Styling($this->_translator);
         $result = $tpl->render($source, array());
         $this->assertEquals('42', $result);
     }
@@ -269,7 +269,7 @@ LOGS
     public function testSubtraction2()
     {
         $source = "<var name='#foo-#bar'/>";
-        $tpl    = new \Erebot\Styling\Main($this->_translator);
+        $tpl    = new \Erebot\Styling($this->_translator);
         $foo    = range(1, 10);
         $bar    = range(1, 4);
         $result = $tpl->render($source, array('foo' => $foo, 'bar' => $bar));
@@ -283,7 +283,7 @@ LOGS
                     '<case form="other">are <var name="boys + girls"/> '.
                         'persons</case>'.
                     '</plural> in this room.';
-        $tpl    = new \Erebot\Styling\Main($this->_translator);
+        $tpl    = new \Erebot\Styling($this->_translator);
 
         $result = $tpl->render($source, array('boys' => 2, 'girls' => 0));
         $this->assertEquals('There are 2 persons in this room.', $result);
@@ -300,7 +300,7 @@ LOGS
         // This "variable" uses both addition on arrays
         // and counting on a virtual variable.
         $source = "<var name='#(foo+bar)'/>";
-        $tpl    = new \Erebot\Styling\Main($this->_translator);
+        $tpl    = new \Erebot\Styling($this->_translator);
         $foo    = range(1, 10);
         $bar    = range(1, 4);
         $result = $tpl->render($source, array('foo' => $foo, 'bar' => $bar));

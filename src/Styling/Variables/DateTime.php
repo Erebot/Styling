@@ -72,14 +72,14 @@ class DateTime implements \Erebot\Styling\Variables\DateTimeInterface
         $this->timezone = $timezone;
     }
 
-    public function render(\Erebot\Intl\IntlInterface $translator)
+    public function render(\Erebot\IntlInterface $translator)
     {
         $timezone   =   ($this->timezone !== null)
                         ? $this->timezone
                         : date_default_timezone_get();
 
         $formatter  = new \IntlDateFormatter(
-            $translator->getLocale(\Erebot\Intl\IntlInterface::LC_TIME),
+            $translator->getLocale(\Erebot\IntlInterface::LC_TIME),
             $this->datetype,
             $this->timetype,
             $timezone

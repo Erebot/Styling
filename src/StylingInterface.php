@@ -18,7 +18,7 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-namespace Erebot\Styling;
+namespace Erebot;
 
 /**
  * \brief
@@ -28,7 +28,7 @@ namespace Erebot\Styling;
  *  before they can be sent.
  *  It also provides a method to render templates easily.
  */
-interface MainInterface
+interface StylingInterface
 {
     // Control codes.
 
@@ -52,13 +52,13 @@ interface MainInterface
     const COLOR_BLACK       = 1;
     /// Blue.
     const COLOR_BLUE        = 2;
-    /// Alias for ::Erebot::Styling::MainInterface::COLOR_NAVY_BLUE.
+    /// Alias for Erebot::StylingInterface::COLOR_NAVY_BLUE.
     const COLOR_NAVY_BLUE   = 2;
-    /// Alias for ::Erebot::Styling::MainInterface::COLOR_DARK_BLUE.
+    /// Alias for Erebot::StylingInterface::COLOR_DARK_BLUE.
     const COLOR_DARK_BLUE   = 2;
     /// Green.
     const COLOR_GREEN       = 3;
-    /// Alias for ::Erebot::Styling::MainInterface::COLOR_DARK_GREEN.
+    /// Alias for Erebot::StylingInterface::COLOR_DARK_GREEN.
     const COLOR_DARK_GREEN  = 3;
     /// Red.
     const COLOR_RED         = 4;
@@ -68,56 +68,56 @@ interface MainInterface
     const COLOR_PURPLE      = 6;
     /// Orange.
     const COLOR_ORANGE      = 7;
-    /// Alias for ::Erebot::Styling::MainInterface::COLOR_ORANGE
+    /// Alias for Erebot::StylingInterface::COLOR_ORANGE
     const COLOR_OLIVE       = 7;
     /// Yellow.
     const COLOR_YELLOW      = 8;
     /// Light green.
     const COLOR_LIGHT_GREEN = 9;
-    /// Alias for ::Erebot::Styling::MainInterface::COLOR_LIGHT_GREEN.
+    /// Alias for Erebot::StylingInterface::COLOR_LIGHT_GREEN.
     const COLOR_LIME_GREEN  = 9;
     /// Cyan.
     const COLOR_CYAN        = 10;
-    /// Alias for ::Erebot::Styling::MainInterface::COLOR_CYAN.
+    /// Alias for Erebot::StylingInterface::COLOR_CYAN.
     const COLOR_TEAL        = 10;
-    /// Alias for ::Erebot::Styling::MainInterface::COLOR_CYAN.
+    /// Alias for Erebot::StylingInterface::COLOR_CYAN.
     const COLOR_DARK_CYAN   = 10;
     /// Light cyan.
     const COLOR_LIGHT_CYAN  = 11;
-    /// Alias for ::Erebot::Styling::MainInterface::COLOR_LIGHT_CYAN.
+    /// Alias for Erebot::StylingInterface::COLOR_LIGHT_CYAN.
     const COLOR_AQUA_LIGHT  = 11;
     /// Light blue.
     const COLOR_LIGHT_BLUE  = 12;
-    /// Alias for ::Erebot::Styling::MainInterface::COLOR_LIGHT_BLUE.
+    /// Alias for Erebot::StylingInterface::COLOR_LIGHT_BLUE.
     const COLOR_ROYAL_BLUE  = 12;
     /// Pink.
     const COLOR_PINK        = 13;
-    /// Alias for ::Erebot::Styling::MainInterface::COLOR_HOT_PINK.
+    /// Alias for Erebot::StylingInterface::COLOR_HOT_PINK.
     const COLOR_HOT_PINK    = 13;
     /// Gray.
     const COLOR_GRAY        = 14;
-    /// Alias for ::Erebot::Styling::MainInterface::COLOR_GRAY.
+    /// Alias for Erebot::StylingInterface::COLOR_GRAY.
     const COLOR_GREY        = 14;
-    /// Alias for ::Erebot::Styling::MainInterface::COLOR_GRAY.
+    /// Alias for Erebot::StylingInterface::COLOR_GRAY.
     const COLOR_DARK_GRAY   = 14;
-    /// Alias for ::Erebot::Styling::MainInterface::COLOR_GRAY.
+    /// Alias for Erebot::StylingInterface::COLOR_GRAY.
     const COLOR_DARK_GREY   = 14;
     /// Light gray.
     const COLOR_LIGHT_GRAY  = 15;
-    /// Alias for ::Erebot::Styling::MainInterface::COLOR_LIGHT_GRAY.
+    /// Alias for Erebot::StylingInterface::COLOR_LIGHT_GRAY.
     const COLOR_LIGHT_GREY  = 15;
 
     /**
      * Constructs a new renderer.
      *
-     * \param ::Erebot::Intl::IntlInterface $translator
+     * \param Erebot::IntlInterface $translator
      *      A translator that can be used to improve
      *      the rendering process.
      */
-    public function __construct(\Erebot\Intl\IntlInterface $translator);
+    public function __construct(\Erebot\IntlInterface $translator);
 
     /**
-     * Alias for ::Erebot::Styling::MainInterface::render(),
+     * Alias for Erebot::StylingInterface::render(),
      * compatible with internationalization tools
      * such as xgettext.
      *
@@ -137,7 +137,7 @@ interface MainInterface
      *      tools such as xgettext can mark the template
      *      as being some message to translate.
      *      If you DO NOT want this behaviour, use
-     *      ::Erebot::Styling::MainInterface::render()
+     *      Erebot::StylingInterface::render()
      *      instead.
      *
      * @codingStandardsIgnoreStart
@@ -160,7 +160,7 @@ interface MainInterface
      *      The formatted result for this template.
      *
      * \note
-     *      ::Erebot::Styling::MainInterface::_() is preferred
+     *      Erebot::StylingInterface::_() is preferred
      *      as it makes external tools such as xgettext add the
      *      template to the list of messages to translate.
      */
@@ -169,7 +169,7 @@ interface MainInterface
     /**
      * Returns the translator associated with this formatter.
      *
-     * \retval ::Erebot::Intl::IntlInterface
+     * \retval Erebot::IntlInterface
      *      Translator associated with this formatter.
      */
     public function getTranslator();

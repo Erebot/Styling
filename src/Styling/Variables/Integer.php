@@ -22,31 +22,32 @@ namespace Erebot\Styling\Variables;
 
 /**
  * \brief
- *      A class used to format floating-point values.
+ *      A class used to format integers.
  */
-class Float implements \Erebot\Styling\Variables\FloatInterface
+class Integer implements \Erebot\Styling\Variables\IntegerInterface
 {
-    /// The float-point value to format.
+    /// Integer to format.
     protected $value;
 
     /**
      * Constructor.
      *
-     * \param float $value
-     *      The floating-point value to format.
+     * \param int $value
+     *      Integer value to format.
      */
     public function __construct($value)
     {
         $this->value = $value;
     }
 
-    public function render(\Erebot\Intl\IntlInterface $translator)
+    public function render(\Erebot\IntlInterface $translator)
     {
-        $locale = $translator->getLocale(\Erebot\Intl\IntlInterface::LC_NUMERIC);
-        $formatter = new \NumberFormatter($locale, \NumberFormatter::DECIMAL);
-        $formatter->setAttribute(\NumberFormatter::MIN_FRACTION_DIGITS, 0);
-        $formatter->setAttribute(\NumberFormatter::MAX_FRACTION_DIGITS, 100);
-        $result = (string) $formatter->format($this->value);
+        $locale = $translator->getLocale(\Erebot\IntlInterface::LC_NUMERIC);
+        $formatter = new \NumberFormatter($locale, \NumberFormatter::IGNORE);
+        $result = (string) $formatter->format(
+            $this->value,
+            \NumberFormatter::TYPE_INT32
+        );
         return $result;
     }
 

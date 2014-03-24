@@ -40,11 +40,11 @@ class Duration implements \Erebot\Styling\Variables\DurationInterface
         $this->value = $value;
     }
 
-    public function render(\Erebot\Intl\IntlInterface $translator)
+    public function render(\Erebot\IntlInterface $translator)
     {
-        $locale = $translator->getLocale(\Erebot\Intl\IntlInterface::LC_MESSAGES);
-        $coreTranslator = new \Erebot\Intl\Intl('Erebot\\Styling\\Main');
-        $coreTranslator->setLocale(\Erebot\Intl\IntlInterface::LC_MESSAGES, $locale);
+        $locale = $translator->getLocale(\Erebot\IntlInterface::LC_MESSAGES);
+        $coreTranslator = new \Erebot\Intl('Erebot\\Styling');
+        $coreTranslator->setLocale(\Erebot\IntlInterface::LC_MESSAGES, $locale);
 
         // DO NOT CHANGE THE CODE BELOW, ESPECIALLY COMMENTS & WHITESPACES.
         // It has all been carefully crafted to make both xgettext and
