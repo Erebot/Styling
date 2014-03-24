@@ -48,7 +48,7 @@ class String implements \Erebot\Styling\Variables\StringInterface
         $this->value = $value;
     }
 
-    public function render(\Erebot\I18N\I18NInterface $translator)
+    public function render(\Erebot\Intl\IntlInterface $translator)
     {
         return (string) $this->value;
     }

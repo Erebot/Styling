@@ -40,9 +40,9 @@ class Float implements \Erebot\Styling\Variables\FloatInterface
         $this->value = $value;
     }
 
-    public function render(\Erebot\I18N\I18NInterface $translator)
+    public function render(\Erebot\Intl\IntlInterface $translator)
     {
-        $locale = $translator->getLocale(\Erebot\I18N\I18NInterface::LC_NUMERIC);
+        $locale = $translator->getLocale(\Erebot\Intl\IntlInterface::LC_NUMERIC);
         $formatter = new \NumberFormatter($locale, \NumberFormatter::DECIMAL);
         $formatter->setAttribute(\NumberFormatter::MIN_FRACTION_DIGITS, 0);
         $formatter->setAttribute(\NumberFormatter::MAX_FRACTION_DIGITS, 100);

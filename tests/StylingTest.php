@@ -24,7 +24,7 @@ extends PHPUnit_Framework_TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->_translator = $this->getMock('\\Erebot\\I18N\\I18NInterface', array(), array('', ''), '', FALSE, FALSE);
+        $this->_translator = $this->getMock('\\Erebot\\Intl\\IntlInterface', array(), array('', ''), '', FALSE, FALSE);
         $this->_translator
             ->expects($this->any())
             ->method('getLocale')
@@ -358,9 +358,7 @@ LOGS
             );
 
             $this->setExpectedLogs($expectedLogs);
-        }
-
-        catch (ReflectionException $e) {
+        } catch (\ReflectionException $e) {
         }
     }
 
@@ -398,14 +396,14 @@ LOGS
         $this->setExpectedLogsFromAnnotations();
 
         $this->logStream = NULL;
-        if (class_exists('Plop', TRUE)) {
-            $logging            = Plop::getInstance();
+        if (class_exists('\\Plop', TRUE)) {
+            $logging            = \Plop::getInstance();
             $this->logStream    = fopen('php://temp', 'a+');
 
-            $handlers   = new Plop_HandlersCollection();
-            $handler    = new Plop_Handler_Stream($this->logStream);
+            $handlers   = new \Plop_HandlersCollection();
+            $handler    = new \Plop_Handler_Stream($this->logStream);
             $handler->setFormatter(
-                new Plop_Formatter('%(levelname)s:%(message)s')
+                new \Plop_Formatter('%(levelname)s:%(message)s')
             );
             $handlers[] = $handler;
             $logging->getLogger()->setHandlers($handlers);
@@ -416,7 +414,7 @@ LOGS
 
     public static function getExpectedLogs2($className, $methodName)
     {
-        $reflector  = new ReflectionMethod($className, $methodName);
+        $reflector  = new \ReflectionMethod($className, $methodName);
         $docComment = $reflector->getDocComment();
         $logLines   = array();
 

@@ -110,11 +110,11 @@ interface MainInterface
     /**
      * Constructs a new renderer.
      *
-     * \param ::Erebot::I18N::I18NInterface $translator
+     * \param ::Erebot::Intl::IntlInterface $translator
      *      A translator that can be used to improve
      *      the rendering process.
      */
-    public function __construct(\Erebot\I18N\I18NInterface $translator);
+    public function __construct(\Erebot\Intl\IntlInterface $translator);
 
     /**
      * Alias for ::Erebot::Styling::MainInterface::render(),
@@ -169,7 +169,7 @@ interface MainInterface
     /**
      * Returns the translator associated with this formatter.
      *
-     * \retval ::Erebot::I18N::I18NInterface
+     * \retval ::Erebot::Intl::IntlInterface
      *      Translator associated with this formatter.
      */
     public function getTranslator();
