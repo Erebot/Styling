@@ -15,7 +15,7 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <grammar xmlns="http://relaxng.org/ns/structure/1.0"
-    xmlns:sch="http://www.ascc.net/xml/schematron"
+    xmlns:sch="http://purl.oclc.org/dsdl/schematron"
     ns="http://www.erebot.net/xmlns/erebot/styling"
     datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
 
