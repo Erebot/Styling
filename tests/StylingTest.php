@@ -31,11 +31,6 @@ extends PHPUnit_Framework_TestCase
             ->will($this->returnValue('en-US'));
     }
 
-    public function tearDown()
-    {
-        parent::tearDown();
-    }
-
     /**
      * @covers \Erebot\Styling
      */
@@ -205,8 +200,16 @@ LOGS
             \IntlDateFormatter::LONG,
             'Europe/Paris'
         );
+
+        // The format for \IntlDateFormatter::FULL changed at some time
+        // on ICU's side.
+        // @TODO make sure this is indeed the version the format was changed
+        if (version_compare(INTL_ICU_VERSION, '52', '>')) {
+            $expected   = 'Thursday, November 28, 1985 at 2:10:00 PM GMT+1';
+        } else {
+            $expected   = 'Thursday, November 28, 1985 2:10:00 PM GMT+01:00';
+        }
         $result     = $tpl->render($source, array('foo' => $formatter));
-        $expected   = 'Thursday, November 28, 1985 2:10:00 PM GMT+01:00';
         $this->assertEquals($expected, $result);
     }
 
