@@ -24,7 +24,7 @@ namespace Erebot\Styling\Variables;
  * \brief
  *      A class used to format durations.
  */
-class Duration implements \Erebot\Styling\Variables\DurationInterface
+class DurationVariable implements \Erebot\Styling\Variables\DurationInterface
 {
     /// The duration to format (in seconds).
     protected $value;

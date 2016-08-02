@@ -24,7 +24,7 @@ namespace Erebot\Styling\Variables;
  * \brief
  *      A class used to format integers.
  */
-class Integer implements \Erebot\Styling\Variables\IntegerInterface
+class IntegerVariable implements \Erebot\Styling\Variables\IntegerInterface
 {
     /// Integer to format.
     protected $value;

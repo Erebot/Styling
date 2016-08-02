@@ -129,9 +129,9 @@ class Styling implements \Erebot\StylingInterface
     {
         $this->translator  = $translator;
         $this->cls = array(
-            'int'       => '\\Erebot\\Styling\\Variables\\Integer',
-            'float'     => '\\Erebot\\Styling\\Variables\\Float',
-            'string'    => '\\Erebot\\Styling\\Variables\\String',
+            'int'       => '\\Erebot\\Styling\\Variables\\IntegerVariable',
+            'float'     => '\\Erebot\\Styling\\Variables\\FloatVariable',
+            'string'    => '\\Erebot\\Styling\\Variables\\StringVariable',
         );
     }
 

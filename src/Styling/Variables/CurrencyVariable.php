@@ -24,7 +24,7 @@ namespace Erebot\Styling\Variables;
  * \brief
  *      A class used to format currencies.
  */
-class Currency implements \Erebot\Styling\Variables\CurrencyInterface
+class CurrencyVariable implements \Erebot\Styling\Variables\CurrencyInterface
 {
     /// Amount.
     protected $value;

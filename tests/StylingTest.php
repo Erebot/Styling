@@ -24,7 +24,9 @@ extends PHPUnit_Framework_TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->_translator = $this->getMock('\\Erebot\\IntlInterface', array(), array('', ''), '', FALSE, FALSE);
+        $this->_translator = $this->getMockBuilder('\\Erebot\\IntlInterface')
+            ->setConstructorArgs(array('', ''))
+            ->getMock();
         $this->_translator
             ->expects($this->any())
             ->method('getLocale')
@@ -157,7 +159,7 @@ LOGS
 
         $result = $tpl->render(
             $source,
-            array('foo' => new \Erebot\Styling\Variables\Integer(12345))
+            array('foo' => new \Erebot\Styling\Variables\IntegerVariable(12345))
         );
         $this->assertEquals('12345', $result);
     }
@@ -171,7 +173,7 @@ LOGS
 
         $result = $tpl->render(
             $source,
-            array('foo' => new \Erebot\Styling\Variables\Float(12345.67891))
+            array('foo' => new \Erebot\Styling\Variables\FloatVariable(12345.67891))
         );
         $this->assertEquals('12,345.67891', $result);
     }
@@ -182,7 +184,7 @@ LOGS
         $tpl    = new \Erebot\Styling($this->_translator);
         $result = $tpl->render(
             $source,
-            array('foo' => new \Erebot\Styling\Variables\Currency(12345.67891, 'EUR'))
+            array('foo' => new \Erebot\Styling\Variables\CurrencyVariable(12345.67891, 'EUR'))
         );
         // Monetary values are rounded.
         $this->assertEquals('€12,345.68', $result);
@@ -194,7 +196,7 @@ LOGS
         $tpl    = new \Erebot\Styling($this->_translator);
         // 28 Nov 1985, 14:10:00 +0100.
         $date = 502031400;
-        $formatter  = new \Erebot\Styling\Variables\DateTime(
+        $formatter  = new \Erebot\Styling\Variables\DateTimeVariable(
             $date,
             \IntlDateFormatter::FULL,
             \IntlDateFormatter::LONG,
@@ -228,7 +230,7 @@ LOGS
         foreach ($values as $duration => $spellout) {
             $result = $tpl->render(
                 $source,
-                array('foo' => new \Erebot\Styling\Variables\Duration($duration))
+                array('foo' => new \Erebot\Styling\Variables\DurationVariable($duration))
             );
             $this->assertEquals($spellout, $result);
         }

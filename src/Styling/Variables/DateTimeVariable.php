@@ -24,7 +24,7 @@ namespace Erebot\Styling\Variables;
  * \brief
  *      A class used to format dates/times.
  */
-class DateTime implements \Erebot\Styling\Variables\DateTimeInterface
+class DateTimeVariable implements \Erebot\Styling\Variables\DateTimeInterface
 {
     /// A value expressing a date/time.
     protected $value;
