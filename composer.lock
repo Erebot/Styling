@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9f1cd5f2e7913c4f7ab1613adbc17915",
-    "content-hash": "b828b835d27e50e72404b64737164d7a",
+    "hash": "66a80280b8a5e266280f5460285c286d",
+    "content-hash": "ad3b1955c29242184d89d8456be83cc4",
     "packages": [
         {
             "name": "erebot/dom",
@@ -225,16 +225,16 @@
         },
         {
             "name": "fpoirotte/php_parsergenerator",
-            "version": "0.1.7-patch2",
+            "version": "0.1.7-patch3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fpoirotte/PHP_ParserGenerator.git",
-                "reference": "7edae642c9b549cfaa5105e1c9926e7021ea8a96"
+                "reference": "e8bc2c6a78b3a895feb7185309281eb9ef13a08f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fpoirotte/PHP_ParserGenerator/zipball/7edae642c9b549cfaa5105e1c9926e7021ea8a96",
-                "reference": "7edae642c9b549cfaa5105e1c9926e7021ea8a96",
+                "url": "https://api.github.com/repos/fpoirotte/PHP_ParserGenerator/zipball/e8bc2c6a78b3a895feb7185309281eb9ef13a08f",
+                "reference": "e8bc2c6a78b3a895feb7185309281eb9ef13a08f",
                 "shasum": ""
             },
             "require": {
@@ -275,20 +275,20 @@
                 "lempar",
                 "parser"
             ],
-            "time": "2016-07-17 20:04:55"
+            "time": "2016-09-17 12:17:04"
         },
         {
             "name": "myclabs/deep-copy",
-            "version": "1.5.2",
+            "version": "1.5.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "da8529775f14f4fdae33f916eb0cf65f6afbddbc"
+                "reference": "ea74994a3dc7f8d2f65a06009348f2d63c81e61f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/da8529775f14f4fdae33f916eb0cf65f6afbddbc",
-                "reference": "da8529775f14f4fdae33f916eb0cf65f6afbddbc",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/ea74994a3dc7f8d2f65a06009348f2d63c81e61f",
+                "reference": "ea74994a3dc7f8d2f65a06009348f2d63c81e61f",
                 "shasum": ""
             },
             "require": {
@@ -317,7 +317,7 @@
                 "object",
                 "object graph"
             ],
-            "time": "2016-09-06 16:07:05"
+            "time": "2016-09-16 13:37:59"
         },
         {
             "name": "phpdocumentor/reflection-common",

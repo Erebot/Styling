@@ -25,6 +25,8 @@ before_script:
     - rm composer.lock
     - composer self-update -n
     - composer install -n
+    - cp data/Styling.y src/Styling/Parser.y
+    - vendor/bin/phplemon -q -s src/Styling/Parser.y
 
 script:
     - vendor/bin/phpunit --coverage-clover clover.xml

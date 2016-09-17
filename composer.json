@@ -28,7 +28,7 @@
         "ext-pcre": "*"
     },
     "require-dev": {
-        "fpoirotte/php_parsergenerator": "*",
+        "fpoirotte/php_parsergenerator": "^0.1.7-patch3",
         "squizlabs/php_codesniffer": "*",
         "phpunit/phpunit": "*"
     },
