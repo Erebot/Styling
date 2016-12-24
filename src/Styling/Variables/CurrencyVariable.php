@@ -53,7 +53,7 @@ class CurrencyVariable implements \Erebot\Styling\Variables\CurrencyInterface
     }
 
     /**
-     * \copydoc ::Erebot::Styling::VariableInterface::render()
+     * \copydoc ::Erebot::Styling::VariableInterface::render
      *
      * \note
      *      If no currency was passed to this class' constructor,
