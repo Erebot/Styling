@@ -19,6 +19,9 @@
 if (!class_exists('PHPUnit_Framework_TestCase')) {
     class_alias('\\PHPUnit\\Framework\\TestCase', 'PHPUnit_Framework_TestCase');
 }
+if (!class_exists('PHPUnit_Framework_TestResult')) {
+    class_alias('\\PHPUnit\\Framework\\TestResult', 'PHPUnit_Framework_TestResult');
+}
 
 class   StylingTest
 extends PHPUnit_Framework_TestCase
