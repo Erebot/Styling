@@ -504,13 +504,14 @@ class Styling implements \Erebot\StylingInterface
                     $result .= $separator[0];
                 }
 
-                $item = each($vars[$loopFrom]);
+                $key = key($vars[$loopFrom]);
+                next($vars[$loopFrom]);
                 if ($loopKey !== null) {
                     $cls = $this->cls['string'];
-                    $vars[$loopKey] = new $cls($item['key']);
+                    $vars[$loopKey] = new $cls($key);
                 }
                 $vars[$loopItem] = $this->wrapScalar(
-                    $item['value'],
+                    $vars[$loopFrom][$key],
                     $loopItem
                 );
 
@@ -521,9 +522,11 @@ class Styling implements \Erebot\StylingInterface
                 );
             }
 
-            $item = each($vars[$loopFrom]);
-            if ($item === false) {
+            $key = key($vars[$loopFrom]);
+            if ($key === null) {
                 $item = array('key' => '', 'value' => '');
+            } else {
+                $item = array('key' => $key, 'value' => $vars[$loopFrom][$key]);
             }
 
             if ($loopKey !== null) {
