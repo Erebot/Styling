@@ -3,11 +3,11 @@
 */
 
 // code external to the class is included here
-#line 1 "data/Styling.y"
+#line 1 "src/Styling/Parser.y"
 
     // @codingStandardsIgnoreFile
     namespace Erebot\Styling;
-#line 11 "data/Styling.php"
+use ArrayAccess; #line 12 "src/Styling/Parser.php"
 
 /**
  * This can be used to store both the string representation of
@@ -15,7 +15,7 @@
  *
  * meta-data should be stored as an array
  */
-class ParseyyToken implements \ArrayAccess
+class ParseyyToken implements ArrayAccess
 {
     public $string = '';
     public $metadata = array();
@@ -101,12 +101,12 @@ class ParseyyStackEntry
 };
 
 // declare_class is output here
-#line 19 "data/Styling.y"
-class Parser#line 107 "data/Styling.php"
+#line 19 "src/Styling/Parser.y"
+class Parser#line 108 "src/Styling/Parser.php"
 {
 /* First off, code is included which follows the "include_class" declaration
 ** in the input file. */
-#line 25 "data/Styling.y"
+#line 26 "src/Styling/Parser.y"
 
     private $_tplVariables;
     private $_result = NULL;
@@ -130,7 +130,7 @@ class Parser#line 107 "data/Styling.php"
 
         return NULL;
     }
-#line 136 "data/Styling.php"
+#line 137 "src/Styling/Parser.php"
 
 /* Next is all token values, as class constants
 */
@@ -202,26 +202,24 @@ class Parser#line 107 "data/Styling.php"
 **                          shifting non-terminals after a reduce.
 **  self::$yy_default       Default action for each state.
 */
-    const YY_SZ_ACTTAB = 21;
+    const YY_SZ_ACTTAB = 20;
 static public $yy_action = array(
- /*     0 */     8,    7,    3,    2,   11,   12,    9,    4,    1,   27,
- /*    10 */     6,   13,    4,    1,   16,   10,   22,   22,    5,   14,
- /*    20 */    15,
+ /*     0 */     7,    8,    4,    2,   16,   12,   15,    1,    3,   27,
+ /*    10 */     6,    9,    1,    3,    5,   10,   13,   11,   22,   14,
     );
     static public $yy_lookahead = array(
- /*     0 */     1,    2,    3,    4,    7,    6,    7,    1,    2,    9,
- /*    10 */    10,    5,    1,    2,    7,   10,   11,   11,   10,   10,
- /*    20 */    10,
+ /*     0 */     1,    2,    3,    4,   10,    6,    7,    1,    2,    9,
+ /*    10 */    10,    5,    1,    2,   10,   10,    7,   10,   11,    7,
 );
-    const YY_SHIFT_USE_DFLT = -4;
+    const YY_SHIFT_USE_DFLT = -2;
     const YY_SHIFT_MAX = 8;
     static public $yy_shift_ofst = array(
- /*     0 */    -1,   -1,   -1,   -1,   -1,    6,   11,   -3,    7,
+ /*     0 */    -1,   -1,   -1,   -1,   -1,    6,   11,    9,   12,
 );
-    const YY_REDUCE_USE_DFLT = -1;
+    const YY_REDUCE_USE_DFLT = -7;
     const YY_REDUCE_MAX = 4;
     static public $yy_reduce_ofst = array(
- /*     0 */     0,    9,    8,   10,    5,
+ /*     0 */     0,   -6,    4,    5,    7,
 );
     static public $yyExpectedTokens = array(
         /* 0 */ array(1, 2, 3, 4, 6, 7, ),
@@ -243,8 +241,8 @@ static public $yy_action = array(
         /* 16 */ array(),
 );
     static public $yy_default = array(
- /*     0 */    26,   26,   26,   26,   26,   26,   17,   26,   26,   25,
- /*    10 */    19,   24,   22,   18,   20,   21,   23,
+ /*     0 */    26,   26,   26,   26,   26,   26,   17,   26,   26,   18,
+ /*    10 */    20,   21,   22,   23,   24,   25,   19,
 );
 /* The next thing included is series of defines which control
 ** various aspects of the generated parser.
@@ -764,13 +762,13 @@ static public $yy_action = array(
     **   function yy_r0($yymsp){ ... }           // User supplied code
     **  #line <lineno> <thisfile>
     */
-#line 53 "data/Styling.y"
+#line 54 "src/Styling/Parser.y"
     function yy_r0(){ $this->_result = $this->yystack[$this->yyidx + 0]->minor;     }
-#line 774 "data/Styling.php"
-#line 55 "data/Styling.y"
+#line 773 "src/Styling/Parser.php"
+#line 56 "src/Styling/Parser.y"
     function yy_r1(){ $this->_retvalue = $this->yystack[$this->yyidx + -1]->minor;     }
-#line 777 "data/Styling.php"
-#line 57 "data/Styling.y"
+#line 776 "src/Styling/Parser.php"
+#line 58 "src/Styling/Parser.y"
     function yy_r2(){
     if (is_array($this->yystack[$this->yyidx + -2]->minor) && is_array($this->yystack[$this->yyidx + 0]->minor)) {
         $this->_retvalue = array_merge($this->yystack[$this->yyidx + -2]->minor, $this->yystack[$this->yyidx + 0]->minor);
@@ -789,8 +787,8 @@ static public $yy_action = array(
 
     $this->_retvalue = $val1 + $val2;
     }
-#line 797 "data/Styling.php"
-#line 76 "data/Styling.y"
+#line 796 "src/Styling/Parser.php"
+#line 77 "src/Styling/Parser.y"
     function yy_r3(){
     $val1 = $this->_extractNumber($this->yystack[$this->yyidx + -2]->minor);
     $val2 = $this->_extractNumber($this->yystack[$this->yyidx + 0]->minor);
@@ -804,26 +802,26 @@ static public $yy_action = array(
 
     $this->_retvalue = $val1 - $val2;
     }
-#line 812 "data/Styling.php"
-#line 90 "data/Styling.y"
+#line 811 "src/Styling/Parser.php"
+#line 91 "src/Styling/Parser.y"
     function yy_r4(){
     $this->_retvalue = count($this->yystack[$this->yyidx + 0]->minor);
     }
-#line 817 "data/Styling.php"
-#line 94 "data/Styling.y"
+#line 816 "src/Styling/Parser.php"
+#line 95 "src/Styling/Parser.y"
     function yy_r5(){
     if (!isset($this->_tplVariables[$this->yystack[$this->yyidx + 0]->minor]))
         throw new \InvalidArgumentException('No such variable: '.$this->yystack[$this->yyidx + 0]->minor);
 
     $this->_retvalue = $this->_tplVariables[$this->yystack[$this->yyidx + 0]->minor];
     }
-#line 825 "data/Styling.php"
-#line 101 "data/Styling.y"
+#line 824 "src/Styling/Parser.php"
+#line 102 "src/Styling/Parser.y"
     function yy_r6(){ $this->_retvalue = $this->yystack[$this->yyidx + 0]->minor;     }
-#line 828 "data/Styling.php"
-#line 102 "data/Styling.y"
+#line 827 "src/Styling/Parser.php"
+#line 103 "src/Styling/Parser.y"
     function yy_r7(){ $this->_retvalue = -$this->yystack[$this->yyidx + 0]->minor;     }
-#line 831 "data/Styling.php"
+#line 830 "src/Styling/Parser.php"
 
     /**
      * placeholder for the left hand side in a reduce operation.
@@ -935,8 +933,8 @@ static public $yy_action = array(
      */
     function yy_syntax_error($yymajor, $TOKEN)
     {
-#line 20 "data/Styling.y"
- throw new \InvalidArgumentException(); #line 945 "data/Styling.php"
+#line 20 "src/Styling/Parser.y"
+ throw new \InvalidArgumentException(); #line 944 "src/Styling/Parser.php"
     }
 
     /**

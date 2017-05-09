@@ -1,5 +1,6 @@
 /vendor/
 /docs/coverage/
 
-/data/Styling.php
-/data/Styling.out
+/data/Styling.y
+/src/Styling/Parser.out
+/src/Styling/Parser.y
