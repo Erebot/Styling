@@ -16,15 +16,9 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-if (!class_exists('PHPUnit_Framework_TestCase')) {
-    class_alias('\\PHPUnit\\Framework\\TestCase', 'PHPUnit_Framework_TestCase');
-}
-if (!class_exists('PHPUnit_Framework_TestResult')) {
-    class_alias('\\PHPUnit\\Framework\\TestResult', 'PHPUnit_Framework_TestResult');
-}
 
 class   StylingTest
-extends PHPUnit_Framework_TestCase
+extends \PHPUnit\Framework\TestCase
 {
     protected $_translator = NULL;
 
@@ -403,7 +397,7 @@ LOGS
         return $result;
     }
 
-    public function run(PHPUnit_Framework_TestResult $result = NULL)
+    public function run(\PHPUnit\Framework\TestResult $result = NULL)
     {
         $this->setExpectedLogsFromAnnotations();
 
