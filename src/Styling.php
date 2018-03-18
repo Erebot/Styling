@@ -372,8 +372,8 @@ class Styling implements \Erebot\StylingInterface
         if (!$valid || count($errors)) {
             // Some unpredicted error occurred,
             // show some (hopefully) useful information.
-            if (class_exists('\\Plop')) {
-                $logger = \Plop::getInstance();
+            if (class_exists('\\Plop\\Plop')) {
+                $logger = \Plop\Plop::getInstance();
                 $logger->error(print_r($errors, true));
             }
             throw new \InvalidArgumentException(
