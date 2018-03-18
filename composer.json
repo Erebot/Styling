@@ -30,10 +30,8 @@
     "require-dev": {
         "fpoirotte/php_parsergenerator": "^0.1.7-patch3",
         "squizlabs/php_codesniffer": "*",
+        "erebot/plop": "^0.6",
         "phpunit/phpunit": "*"
-    },
-    "suggest": {
-        "erebot/plop": "~0.6"
     },
     "autoload": {
         "psr-4": {
