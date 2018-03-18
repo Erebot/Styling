@@ -98,8 +98,8 @@ extends \PHPUnit\Framework\TestCase
     public function testColorMissingAttributes()
     {
         $path   = dirname(__DIR__) . DIRECTORY_SEPARATOR;
-        $msg    =  'The "fg" attribute or the "bg" attribute or both must ' .
-                    'be supplied when using the <color> tag.';
+        $xpath  = "/*[local-name()='msg' and namespace-uri()='http://www.erebot.net/xmlns/erebot/styling']" .
+                  "/*[local-name()='color' and namespace-uri()='http://www.erebot.net/xmlns/erebot/styling']";
 
         if (DIRECTORY_SEPARATOR == "/")
             $xmlPath = $path;
@@ -119,10 +119,12 @@ ERROR:Array
             [level] => 2
             [code] => 0
             [column] => 0
-            [message] => $msg
+            [message] =>
+                        The "fg" attribute or the "bg" attribute or both
+                        must be supplied when using the <color> tag.
             [file] => $xmlPath
-            [line] => 0
-            [path] => /msg[1]/color[1]
+            [line] => 1
+            [path] => $xpath
         )
 )
 LOGS
@@ -370,52 +372,42 @@ LOGS
 
     protected function runTest()
     {
+        $this->setExpectedLogsFromAnnotations();
+
+        $logging            = \Plop\Plop::getInstance();
+        $this->logStream    = fopen('php://temp', 'a+');
+
+        $handlers   = new \Plop\HandlersCollection();
+        $handler    = new \Plop\Handler\Stream($this->logStream);
+        $handler->setFormatter(
+            new \Plop\Formatter('%(levelname)s:%(message)s')
+        );
+        $handlers[] = $handler;
+        $logging->getLogger()->setHandlers($handlers);
+
         $result = parent::runTest();
 
-        if ($this->logStream !== NULL) {
-            $this->addToAssertionCount(1);
-            fseek($this->logStream, 0);
-            $actualLogs = stream_get_contents($this->logStream);
-            fclose($this->logStream);
-            $actualLogs = array_map('rtrim', explode("\n", $actualLogs));
-            $actualLogs = array_values(array_filter($actualLogs, 'strlen'));
+        $this->addToAssertionCount(1);
+        fseek($this->logStream, 0);
+        $actualLogs = stream_get_contents($this->logStream);
+        fclose($this->logStream);
+        $actualLogs = array_map('rtrim', explode("\n", $actualLogs));
+        $actualLogs = array_values(array_filter($actualLogs, 'strlen'));
 
-            if ($this->expectedLogs !== NULL) {
-                if (count($this->expectedLogs)) {
-                    $this->assertEquals($this->expectedLogs, $actualLogs);
-                }
+        if ($this->expectedLogs !== NULL) {
+            if (count($this->expectedLogs)) {
+                $this->assertEquals($this->expectedLogs, $actualLogs);
+            }
 
-                else if (count($actualLogs)) {
-                    $this->fail(
-                        "No logs expected, but we received:\n" .
-                        var_export($actualLogs, TRUE)
-                    );
-                }
+            else if (count($actualLogs)) {
+                $this->fail(
+                    "No logs expected, but we received:\n" .
+                    var_export($actualLogs, TRUE)
+                );
             }
         }
 
         return $result;
-    }
-
-    public function run(\PHPUnit\Framework\TestResult $result = NULL)
-    {
-        $this->setExpectedLogsFromAnnotations();
-
-        $this->logStream = NULL;
-        if (class_exists('\\Plop', TRUE)) {
-            $logging            = \Plop::getInstance();
-            $this->logStream    = fopen('php://temp', 'a+');
-
-            $handlers   = new \Plop_HandlersCollection();
-            $handler    = new \Plop_Handler_Stream($this->logStream);
-            $handler->setFormatter(
-                new \Plop_Formatter('%(levelname)s:%(message)s')
-            );
-            $handlers[] = $handler;
-            $logging->getLogger()->setHandlers($handlers);
-        }
-
-        return parent::run($result);
     }
 
     public static function getExpectedLogs2($className, $methodName)
