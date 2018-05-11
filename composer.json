@@ -1,6 +1,7 @@
 {
     "prefer-stable": true,
     "name": "erebot/styling",
+    "type": "php-parsers",
     "description": "Templating API for IRC messages",
     "keywords": ["templating", "templates", "irc", "styles"],
     "homepage": "https://github.com/Erebot/Styling",
@@ -19,7 +20,7 @@
     },
     "require": {
         "php": ">=5.3.0",
-        "fpoirotte/file_gettext": "*",
+        "fpoirotte/php_parsergenerator_installer": "^0.1.0",
         "erebot/intl": "^0.2.0",
         "erebot/dom": "*",
         "ext-spl": "*",
@@ -28,7 +29,6 @@
         "ext-pcre": "*"
     },
     "require-dev": {
-        "fpoirotte/php_parsergenerator": "^0.1.7-patch3",
         "squizlabs/php_codesniffer": "*",
         "erebot/plop": "^0.6",
         "phpunit/phpunit": "*"
@@ -39,6 +39,9 @@
         }
     },
     "extra": {
+        "php-parsers": {
+            "src/Styling/Parser.php": "data/Styling.y"
+        },
         "branch-alias": {
             "dev-master": "1.0.x-dev"
         }
