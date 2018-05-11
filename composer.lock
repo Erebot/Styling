@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4f6c53a072de59b189f52bfaf10e7568",
+    "content-hash": "2930627ac9098af3c0b6158dae19aebb",
     "packages": [
         {
             "name": "erebot/dom",
@@ -1812,7 +1812,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.3.0",
+        "php": ">=7.0",
         "ext-spl": "*",
         "ext-reflection": "*",
         "ext-intl": "*",
