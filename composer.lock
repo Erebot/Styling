@@ -63,16 +63,16 @@
         },
         {
             "name": "erebot/intl",
-            "version": "0.2.1",
+            "version": "0.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Erebot/Intl.git",
-                "reference": "2b52be88dcc671b30b8c165cc6c151b6605133ff"
+                "reference": "6356e72e5e301faf49a20a22c55aeccfe30613ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Erebot/Intl/zipball/2b52be88dcc671b30b8c165cc6c151b6605133ff",
-                "reference": "2b52be88dcc671b30b8c165cc6c151b6605133ff",
+                "url": "https://api.github.com/repos/Erebot/Intl/zipball/6356e72e5e301faf49a20a22c55aeccfe30613ff",
+                "reference": "6356e72e5e301faf49a20a22c55aeccfe30613ff",
                 "shasum": ""
             },
             "require": {
@@ -121,7 +121,7 @@
                 "l10n",
                 "translations"
             ],
-            "time": "2018-05-10T14:58:55+00:00"
+            "time": "2018-05-11T11:40:34+00:00"
         },
         {
             "name": "fpoirotte/php_parsergenerator",
