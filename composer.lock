@@ -184,16 +184,16 @@
         },
         {
             "name": "fpoirotte/php_parsergenerator_installer",
-            "version": "0.1.3",
+            "version": "0.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fpoirotte/PHP_ParserGenerator_Installer.git",
-                "reference": "5200d29101b6981dcf659e12f4c1e519f04d993a"
+                "reference": "514af1f7cc3a3af42b1029b6ad454114f063fe8d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fpoirotte/PHP_ParserGenerator_Installer/zipball/5200d29101b6981dcf659e12f4c1e519f04d993a",
-                "reference": "5200d29101b6981dcf659e12f4c1e519f04d993a",
+                "url": "https://api.github.com/repos/fpoirotte/PHP_ParserGenerator_Installer/zipball/514af1f7cc3a3af42b1029b6ad454114f063fe8d",
+                "reference": "514af1f7cc3a3af42b1029b6ad454114f063fe8d",
                 "shasum": ""
             },
             "require": {
@@ -233,7 +233,7 @@
                 "lempar",
                 "parser"
             ],
-            "time": "2018-05-10T21:21:15+00:00"
+            "time": "2018-05-11T08:02:56+00:00"
         }
     ],
     "packages-dev": [
