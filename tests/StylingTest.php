@@ -216,37 +216,67 @@ LOGS
         $this->assertEquals($expected, $result);
     }
 
-    public function testDuration()
+    public function durations()
     {
-        $source = "<var name='foo'/>";
-        $tpl    = new \Erebot\Styling($this->_translator);
         $values = array(
             0       => "0 seconds",
             1       => "1 second",
             2       => "2 seconds",
             59      => "59 seconds",
             60      => "1 minute",
-            61      => "1 minute, 1 second",
-            3599    => "59 minutes, 59 seconds",
+            61      => "1 minute and 1 second",
+            3599    => "59 minutes and 59 seconds",
             3600    => "1 hour",
-            3601    => "1 hour, 1 second",
-            86399   => "23 hours, 59 minutes, 59 seconds",
+            3601    => "1 hour and 1 second",
+            3660    => "1 hour and 1 minute",
+            3661    => "1 hour, 1 minute and 1 second",
+            86399   => "23 hours, 59 minutes and 59 seconds",
             86400   => "1 day",
-            86401   => "1 day, 1 second",
-            604799  => "6 days, 23 hours, 59 minutes, 59 seconds",
+            86401   => "1 day and 1 second",
+            86460   => "1 day and 1 minute",
+            86461   => "1 day, 1 minute and 1 second",
+            90000   => "1 day and 1 hour",
+            90001   => "1 day, 1 hour and 1 second",
+            90060   => "1 day, 1 hour and 1 minute",
+            90061   => "1 day, 1 hour, 1 minute and 1 second",
+            604799  => "6 days, 23 hours, 59 minutes and 59 seconds",
             604800  => "1 week",
-            604801  => "1 week, 1 second",
-            694861  => "1 week, 1 day, 1 hour, 1 minute, 1 second",
-            1389722 => "2 weeks, 2 days, 2 hours, 2 minutes, 2 seconds",
+            604801  => "1 week and 1 second",
+            604860  => "1 week and 1 minute",
+            608400  => "1 week and 1 hour",
+            608401  => "1 week, 1 hour and 1 second",
+            608460  => "1 week, 1 hour and 1 minute",
+            608461  => "1 week, 1 hour, 1 minute and 1 second",
+            691200  => "1 week and 1 day",
+            691201  => "1 week, 1 day and 1 second",
+            691260  => "1 week, 1 day and 1 minute",
+            691261  => "1 week, 1 day, 1 minute and 1 second",
+            694800  => "1 week, 1 day and 1 hour",
+            694860  => "1 week, 1 day, 1 hour and 1 minute",
+            694861  => "1 week, 1 day, 1 hour, 1 minute and 1 second",
+            1389722 => "2 weeks, 2 days, 2 hours, 2 minutes and 2 seconds",
         );
-
-        foreach ($values as $duration => $spellout) {
-            $result = $tpl->render(
-                $source,
-                array('foo' => new \Erebot\Styling\Variables\DurationVariable($duration))
-            );
-            $this->assertEquals($spellout, $result);
+        $res = array();
+        foreach ($values as $duration => $repr) {
+            $res[] = array($duration, $repr);
         }
+        return $res;
+    }
+
+
+    /**
+     * @dataProvider durations
+     */
+    public function testDuration($duration, $representation)
+    {
+        $source = "<var name='foo'/>";
+        $tpl    = new \Erebot\Styling($this->_translator);
+
+        $result = $tpl->render(
+            $source,
+            array('foo' => new \Erebot\Styling\Variables\DurationVariable($duration))
+        );
+        $this->assertEquals($representation, $result);
     }
 
     public function testCount()

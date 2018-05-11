@@ -55,33 +55,54 @@ class DurationVariable implements \Erebot\Styling\Variables\DurationInterface
 
         $rule = $coreTranslator->_(
             // I18N: ICU rule used to format durations (using words).
-            // Eg. 12345 becomes "3 hours, 25 minutes, 45 seconds" (in english).
+            // Eg. 12345 is equal to "3 hours, 25 minutes and 45 seconds".
             // For examples of valid rules, see: http://goo.gl/q94xS
             // For the complete syntax, see also: http://goo.gl/jp2Bd
+            //
+            // The main rule is called "%with-words". It finds the highest
+            // unit (week, day, hour, etc.) that fits into the value.
+            // If the value is not an even multiple of the unit, we jump
+            // to a "%%<unit>-sub" rule to format the remainder of the value
+            // divided by the unit. This process is repeated until the whole
+            // value has been processed.
             "%with-words:\n".
             "    0: 0 seconds;\n".
             "    1: 1 second;\n".
             "    2: =#0= seconds;\n".
             "    60/60: <%%min<;\n".
-            "    61/60: <%%min<, >%with-words>;\n".
-            "    3600/60: <%%hr<;\n".
-            "    3601/60: <%%hr<, >%with-words>;\n".
+            "    61/60: <%%min<>%%min-sub>;\n".
+            "    3600/3600: <%%hr<;\n".
+            "    3601/3600: <%%hr<>%%hr-sub>;\n".
             "    86400/86400: <%%day<;\n".
-            "    86401/86400: <%%day<, >%with-words>;\n".
+            "    86401/86400: <%%day<>%%day-sub>;\n".
             "    604800/604800: <%%week<;\n".
-            "    604801/604800: <%%week<, >%with-words>;\n".
+            "    604801/604800: <%%week<>%%week-sub>;\n".
             "%%min:\n".
             "    1: 1 minute;\n".
             "    2: =#0= minutes;\n".
+            "%%min-sub:\n".
+            "    1: ' and <%with-words<;\n".
             "%%hr:\n".
             "    1: 1 hour;\n".
             "    2: =#0= hours;\n".
+            "%%hr-sub:\n".
+            "    1: <%%min-sub<;\n".
+            "    60/60: ' and <%%min<;\n".
+            "    61/60: , <%%min<>%%min-sub>;\n".
             "%%day:\n".
             "    1: 1 day;\n".
             "    2: =#0= days;\n".
+            "%%day-sub:\n".
+            "    1: <%%hr-sub<;\n".
+            "    3600/3600: ' and <%%hr<;\n".
+            "    3601/3600: , <%%hr<>%%hr-sub>;\n".
             "%%week:\n".
             "    1: 1 week;\n".
-            "    2: =#0= weeks;"
+            "    2: =#0= weeks;\n".
+            "%%week-sub:\n".
+            "    1: <%%day-sub<;\n".
+            "    86400/86400: ' and <%%day<;\n".
+            "    86401/86400: , <%%day<>%%day-sub>;\n"
         );
 
         $formatter = new \NumberFormatter(
