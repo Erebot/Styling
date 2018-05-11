@@ -121,11 +121,11 @@ class Styling implements \Erebot\StylingInterface
     /**
      * Construct a new styling object.
      *
-     * \param ::Erebot::IntlInterface $translator
+     * \param ::Erebot::Intl::TranslatorInterface $translator
      *      A translator object, used to determine the correct
      *      pluralization rules.
      */
-    public function __construct(\Erebot\IntlInterface $translator)
+    public function __construct(\Erebot\Intl\TranslatorInterface $translator)
     {
         $this->translator  = $translator;
         $this->cls = array(
@@ -576,9 +576,7 @@ class Styling implements \Erebot\StylingInterface
                 $pattern .= $form.'{'.$form.'} ';
             }
             $pattern .= '}';
-            $locale = $this->translator->getLocale(
-                \Erebot\IntlInterface::LC_MESSAGES
-            );
+            $locale = $this->translator->getLocale();
             $formatter = new \MessageFormatter($locale, $pattern);
             // HACK: PHP <= 5.3.3 returns null when the pattern in invalid
             // instead of throwing an exception.

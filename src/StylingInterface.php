@@ -110,11 +110,11 @@ interface StylingInterface
     /**
      * Constructs a new renderer.
      *
-     * \param Erebot::IntlInterface $translator
+     * \param Erebot::Intl::TranslatorInterface $translator
      *      A translator that can be used to improve
      *      the rendering process.
      */
-    public function __construct(\Erebot\IntlInterface $translator);
+    public function __construct(\Erebot\Intl\TranslatorInterface $translator);
 
     /**
      * Alias for Erebot::StylingInterface::render(),
@@ -169,7 +169,7 @@ interface StylingInterface
     /**
      * Returns the translator associated with this formatter.
      *
-     * \retval Erebot::IntlInterface
+     * \retval Erebot::Intl::TranslatorInterface
      *      Translator associated with this formatter.
      */
     public function getTranslator();

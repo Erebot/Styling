@@ -60,9 +60,9 @@ class CurrencyVariable implements \Erebot\Styling\Variables\CurrencyInterface
      *      the currency associated with the translator's locale
      *      is used.
      */
-    public function render(\Erebot\IntlInterface $translator)
+    public function render(\Erebot\Intl\TranslatorInterface $translator)
     {
-        $locale = $translator->getLocale(\Erebot\IntlInterface::LC_MONETARY);
+        $locale = $translator->getLocale();
         $formatter = new \NumberFormatter($locale, \NumberFormatter::CURRENCY);
         $currency = ($this->currency !== null)
                     ? $this->currency

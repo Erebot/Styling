@@ -40,9 +40,9 @@ class IntegerVariable implements \Erebot\Styling\Variables\IntegerInterface
         $this->value = $value;
     }
 
-    public function render(\Erebot\IntlInterface $translator)
+    public function render(\Erebot\Intl\TranslatorInterface $translator)
     {
-        $locale = $translator->getLocale(\Erebot\IntlInterface::LC_NUMERIC);
+        $locale = $translator->getLocale();
         $formatter = new \NumberFormatter($locale, \NumberFormatter::IGNORE);
         $result = (string) $formatter->format(
             $this->value,

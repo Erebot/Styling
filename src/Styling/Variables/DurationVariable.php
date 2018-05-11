@@ -40,11 +40,13 @@ class DurationVariable implements \Erebot\Styling\Variables\DurationInterface
         $this->value = $value;
     }
 
-    public function render(\Erebot\IntlInterface $translator)
+    public function render(\Erebot\Intl\TranslatorInterface $translator)
     {
-        $locale = $translator->getLocale(\Erebot\IntlInterface::LC_MESSAGES);
-        $coreTranslator = new \Erebot\Intl('Erebot\\Styling');
-        $coreTranslator->setLocale(\Erebot\IntlInterface::LC_MESSAGES, $locale);
+        $locale = $translator->getLocale();
+        $localedir = dirname(dirname(dirname(__DIR__))) .
+                    DIRECTORY_SEPARATOR . 'data' .
+                    DIRECTORY_SEPARATOR . 'i18n';
+        $coreTranslator = \Erebot\Intl\GettextFactory::translation('Erebot_Styling', $localedir, array($locale));
 
         // DO NOT CHANGE THE CODE BELOW, ESPECIALLY COMMENTS & WHITESPACES.
         // It has all been carefully crafted to make both xgettext and

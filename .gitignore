@@ -2,5 +2,4 @@
 /docs/coverage/
 
 /data/Styling.y
-/src/Styling/Parser.out
-/src/Styling/Parser.y
+/src/Styling/Parser.*

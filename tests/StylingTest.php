@@ -25,13 +25,11 @@ extends \PHPUnit\Framework\TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->_translator = $this->getMockBuilder('\\Erebot\\IntlInterface')
-            ->setConstructorArgs(array('', ''))
-            ->getMock();
+        $this->_translator = $this->getMockBuilder('\\Erebot\\Intl\\TranslatorInterface')->getMock();
         $this->_translator
             ->expects($this->any())
             ->method('getLocale')
-            ->will($this->returnValue('en-US'));
+            ->will($this->returnValue('en_US'));
     }
 
     /**
@@ -226,6 +224,18 @@ LOGS
             0       => "0 seconds",
             1       => "1 second",
             2       => "2 seconds",
+            59      => "59 seconds",
+            60      => "1 minute",
+            61      => "1 minute, 1 second",
+            3599    => "59 minutes, 59 seconds",
+            3600    => "1 hour",
+            3601    => "1 hour, 1 second",
+            86399   => "23 hours, 59 minutes, 59 seconds",
+            86400   => "1 day",
+            86401   => "1 day, 1 second",
+            604799  => "6 days, 23 hours, 59 minutes, 59 seconds",
+            604800  => "1 week",
+            604801  => "1 week, 1 second",
             694861  => "1 week, 1 day, 1 hour, 1 minute, 1 second",
             1389722 => "2 weeks, 2 days, 2 hours, 2 minutes, 2 seconds",
         );
